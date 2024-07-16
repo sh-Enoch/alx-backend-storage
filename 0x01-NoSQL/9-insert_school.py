@@ -5,5 +5,10 @@ import pymongo
 
 def insert_school(mongo_collection, **kwargs):
     """Insert new document in a collection."""
-    post_id = mongo_collection.insert(kwargs).inserted_id
-    return post_id
+    mongo_dict = {}
+    for key, value in kwargs.items():
+        mongo_dict[key] = value
+    result = mongo_collection.insert_one(mongo_dict)
+    inserted_id = result.inserted_id
+    obj_key =  mongo_collection.find_one({"_d": inserted_id})
+    return obj_key

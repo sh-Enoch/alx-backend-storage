@@ -8,7 +8,6 @@ def insert_school(mongo_collection, **kwargs):
     mongo_dict = {}
     for key, value in kwargs.items():
         mongo_dict[key] = value
-    result = mongo_collection.insert_one(mongo_dict)
-    inserted_id = result.inserted_id
-    obj_key =  mongo_collection.find_one({"_d": inserted_id})
+    new_doc = mongo_collection.insert_one(mongo_dict)
+    obj_key = new_doc.inserted_id
     return obj_key

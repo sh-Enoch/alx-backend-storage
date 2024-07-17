@@ -34,5 +34,5 @@ class Cache():
 
     def get_int(self, key: str) -> int:
         """Get data as int."""
-        data = self.get(key, lambda x: x.decode('utf-8'))
+        data = self.get(key)
         return data

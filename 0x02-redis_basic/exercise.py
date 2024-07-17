@@ -17,4 +17,4 @@ class Cache():
         """Take data and returns a string."""
         key = str(uuid.uuid4())
         self._redis.set(key, data)
-        return key
+        return self._redis.get(key)
